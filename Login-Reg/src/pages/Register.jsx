@@ -37,31 +37,40 @@ export default function Register() {
   return (
     <div>
       <form onSubmit={registerUser}>
-        <label>Name</label>
-        <input
-          type="text"
-          placeholder="Please enter a name..."
-          value={data.name}
-          onChange={(e) => setData({ ...data, name: e.target.value })}
-        />
+        <div className="mb-3">
+          <label className="form-label">Name</label>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Please enter a name..."
+            value={data.name}
+            onChange={(e) => setData({ ...data, name: e.target.value })}
+          />
+        </div>
 
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="Enter Email..."
-          value={data.email}
-          onChange={(e) => setData({ ...data, email: e.target.value })}
-        />
+        <div className="mb-3">
+          <label className="form-label">Email</label>
+          <input
+            className="form-control"
+            type="email"
+            placeholder="Enter Email..."
+            value={data.email}
+            onChange={(e) => setData({ ...data, email: e.target.value })}
+          />
+        </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Enter Password..."
-          value={data.password}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-        />
+        <div className="mb-3">
+          <label className="form-label">Password</label>
+          <input
+            className="form-control"
+            type="password"
+            placeholder="Enter Password..."
+            value={data.password}
+            onChange={(e) => setData({ ...data, password: e.target.value })}
+          />
+        </div>
 
-        <button type="submit">Register</button>
+        <button className ="btn btn-primary"type="submit">Register</button>
       </form>
     </div>
   );

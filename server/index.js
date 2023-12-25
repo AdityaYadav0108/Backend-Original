@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -11,13 +12,11 @@ mongoose
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser())
+app.use(express.urlencoded(false));
 
 const port = 3000;
 
 app.use("/", require("./routes/authRoutes"));
 
-app.listen(port, () =>
-  console.log(
-    "Hello Is this server working or am i crazy??? crazy? i was crazy once, man shiut up"
-  )
-);
+app.listen(port);

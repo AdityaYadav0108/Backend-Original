@@ -26,33 +26,38 @@ export default function Login() {
         toast.error(data.error);
       } else {
         setData({});
-        navigate("/");
+        navigate("/dashboard");
       }
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 
   return (
     <div>
       <form onSubmit={loginUser}>
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="Enter Email..."
-          value={data.email}
-          onChange={(e) => setData({ ...data, email: e.target.value })}
-        />
+        <div className="mb-3">
+          <label className="form-label">Email</label>
+          <input
+            className="form-control"
+            type="email"
+            placeholder="Enter Email..."
+            value={data.email}
+            onChange={(e) => setData({ ...data, email: e.target.value })}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Password</label>
+          <input
+            className="form-control"
+            type="password"
+            placeholder="Enter Password..."
+            value={data.password}
+            onChange={(e) => setData({ ...data, password: e.target.value })}
+          />
+        </div>
 
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Enter Password..."
-          value={data.password}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-        />
-
-        <button type="submit">Login</button>
+        <button className="btn btn-primary" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

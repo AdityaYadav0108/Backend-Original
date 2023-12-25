@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
+const jwt = require("jsonwebtoken");
 
 const test = (req, res) => {
   res.json("This is the test and it is working");
@@ -29,12 +30,12 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const hashedPassword = await hashPassword(password);
+    // const hashedPassword = await hashPassword(password);
 
     const user = await User.create({
       name,
       email,
-      hashedPassword,
+      password,
     });
 
     return res.json(user);
@@ -44,28 +45,54 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  try{
-    const {email, password} = req.body;
+  try {
+    const { email, password } = req.body;
 
-    const user = await User.findOne({email});
+    const user = await User.findOne({ email });
 
-    if(!user){
+    if (!user) {
       return res.json({
         error: "No user found with this email",
-      })
+      });
     }
 
     const match = await comparePassword(password, user.password);
 
-    if(match){
-      res.json("passwords match");
-    }else{
+    if (match) {
+      const token = await new Promise((resolve, reject) => {
+        jwt.sign(
+          { email: user.email, id: user._id, name: user.name },
+          process.env.JWT_SECRET,
+          (err, token) => {
+            if (err) reject(err);
+            resolve(token);
+          }
+        );
+      });
+
+      res.cookie("token", token);
+      res.json(user);
+      
+    } else {
       res.json({
-        error: "The passwords didnt match"
-      })
+        error: "The passwords didnt match",
+      });
     }
-  }catch(error){
+  } catch (error) {
     console.log(error);
+  }
+};
+
+const getProfile = async (req, res) => {
+  const {token} = req.cookies;
+
+  if(token){
+    jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+      if(err) throw err;
+      res.json(user);
+    })
+  } else{
+    res.json(null)
   }
 }
 
@@ -73,4 +100,5 @@ module.exports = {
   test,
   registerUser,
   loginUser,
+  getProfile
 };
