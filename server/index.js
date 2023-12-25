@@ -11,14 +11,6 @@ mongoose
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://backend-frontend-ruby.vercel.app",
-    credentials: true,
-    methods: ["GET", "POST"],
-  })
-);
-
 app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded(false));

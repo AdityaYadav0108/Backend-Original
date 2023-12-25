@@ -11,6 +11,7 @@ export default function Register() {
     email: "",
     password: "",
   });
+  axios.defaults.withCredentials = true;
 
   const registerUser = async (e) => {
     e.preventDefault();

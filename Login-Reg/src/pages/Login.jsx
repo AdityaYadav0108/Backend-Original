@@ -9,7 +9,7 @@ export default function Login() {
     email: "",
     password: "",
   });
-
+  axios.defaults.withCredentials = true;
   const navigate = useNavigate();
 
   const loginUser = async (e) => {
