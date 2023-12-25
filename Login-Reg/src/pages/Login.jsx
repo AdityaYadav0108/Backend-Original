@@ -18,7 +18,7 @@ export default function Login() {
     const { email, password } = data;
 
     try {
-      const { data } = await axios.post("/login", {
+      const { data } = await axios.post("https://backend-assignment-blond.vercel.app/login", {
         email,
         password,
       });

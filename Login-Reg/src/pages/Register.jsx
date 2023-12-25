@@ -16,7 +16,7 @@ export default function Register() {
     e.preventDefault();
     const { name, email, password } = data;
     try {
-      const { data } = await axios.post("/register", {
+      const { data } = await axios.post("https://backend-assignment-blond.vercel.app/register", {
         name,
         email,
         password,
