@@ -6,7 +6,7 @@ const {test, registerUser, loginUser, getProfile} = require('../controllers/auth
 router.use(
   cors({
     credentials: true,
-    origin: "https://backend-frontend-ruby.vercel.app/",
+    origin: "https://backend-frontend-ruby.vercel.app",
   })
 );
 
