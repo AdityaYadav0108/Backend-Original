@@ -8,13 +8,13 @@ const {
   getProfile,
 } = require("../controllers/authController");
 
-router.use(
-  cors({
-    origin: "https://backend-frontend-ruby.vercel.app",
-    credentials: true,
-    methods: ["GET", "POST"],
-  })
-);
+// router.use(
+//   cors({
+//     origin: "https://backend-frontend-ruby.vercel.app",
+//     credentials: true,
+//     methods: ["GET", "POST"],
+//   })
+// );
 
 router.get("/", test);
 router.post("/register", registerUser);
