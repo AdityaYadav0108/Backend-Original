@@ -71,11 +71,8 @@ const loginUser = async (req, res) => {
       });
 
       res.cookie("token", token);
-      res.header(
-        "Access-Control-Allow-Origin",
-        "https://backend-frontend-ruby.vercel.app"
-      );
       res.json(user);
+      
     } else {
       res.json({
         error: "The passwords didnt match",
@@ -87,21 +84,21 @@ const loginUser = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  const { token } = req.cookies;
+  const {token} = req.cookies;
 
-  if (token) {
+  if(token){
     jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
-      if (err) throw err;
+      if(err) throw err;
       res.json(user);
-    });
-  } else {
-    res.json(null);
+    })
+  } else{
+    res.json(null)
   }
-};
+}
 
 module.exports = {
   test,
   registerUser,
   loginUser,
-  getProfile,
+  getProfile
 };

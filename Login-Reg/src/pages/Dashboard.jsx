@@ -11,7 +11,7 @@ export default function Dahsboard(){
           </div>
           <div>
             <p>
-              Hello, User! This is your personalized dashboard. Feel free to explore and manage your account.
+              Hello, This is your personalized dashboard. Feel free to explore and manage your account.
             </p>
           </div>
         </main>

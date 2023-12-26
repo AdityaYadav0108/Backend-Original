@@ -14,18 +14,6 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded(false));
-app.use(cors({
-  origin: "https://backend-frontend-ruby.vercel.app",
-  credentials: true,
-  methods: ["GET", "POST"],
-}));
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-  next();
-});
 
 const port = 3000;
 

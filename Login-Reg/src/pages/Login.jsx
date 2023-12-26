@@ -9,7 +9,7 @@ export default function Login() {
     email: "",
     password: "",
   });
-  axios.defaults.withCredentials = true;
+
   const navigate = useNavigate();
 
   const loginUser = async (e) => {
@@ -18,7 +18,7 @@ export default function Login() {
     const { email, password } = data;
 
     try {
-      const { data } = await axios.post("https://backend-assignment-blond.vercel.app/login", {
+      const { data } = await axios.post("/login", {
         email,
         password,
       });

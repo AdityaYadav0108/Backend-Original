@@ -11,13 +11,12 @@ export default function Register() {
     email: "",
     password: "",
   });
-  axios.defaults.withCredentials = true;
 
   const registerUser = async (e) => {
     e.preventDefault();
     const { name, email, password } = data;
     try {
-      const { data } = await axios.post("https://backend-assignment-blond.vercel.app/register", {
+      const { data } = await axios.post("/register", {
         name,
         email,
         password,
